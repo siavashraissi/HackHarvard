@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@200;400;500;600;800&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.obesityInput {
+    margin-top: 15px;
+    margin-left: 45px;
+}
+.obesityInput input {
+    margin-top: 15px;
+
+    height: 18px;
+    width: 200px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.obesityInput label {
+    margin-top: 15px;
+    font-weight: 600;
+    font-size: 40px;
+    color: black;
+}
+
+.obesityInput button {
+    font-weight: 500;
+    font-size: 35px;
+    padding: 10px 30px;
+    border-radius: 10px;
+    color: white;
+    border: 1px #05D5A4;
+
+    background: #05D5A4;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+
+.navbar {
+    overflow: hidden;
+    /* float: left; */
+}
+
+.navbar img {
+    float: left;
+    width: 125px;
+    margin-top: 35px;
+    margin-left: 45px;
+}
+
+.navbar h1 {
+    float: left;
+    font-weight: 600;
+    font-size: 60px;
+    margin-left: 50px;
+    margin-top: 60px;
+    color: black;
+}
+
+.navbar button {
+    font-weight: 500;
+    font-size: 35px;
+    padding: 10px 30px;
+    border-radius: 10px;
+    color: white;
+    border: 1px #05D5A4;
+
+    background: #05D5A4;
+    margin-left: 600px;
+    margin-top: 55px;
+}
+
+.main {
+    overflow: hidden;
+    margin-top: 30px;
+}
+
+.main img {
+    width:100%;
+    height:100%;
+}
+
+.choose {
+    overflow: hidden;
+    margin-top: 50px;
+}
+
+.choose h1 {
+    margin-left: 45px;
+    font-weight: 600;
+    font-size: 40px;
+    margin-left: 50px;
+    margin-top: 60px;
+    color: black;
+}
+
+.choose button {
+    font-weight: 600;
+    font-size: 35px;
+    padding: 10px 30px;
+    border-radius: 10px;
+    color: white;
+    border: 1px #05D5A4;
+
+    background: #05D5A4;
+    margin-left: 55px;
+    margin-top: 15px;
+    margin-bottom: 150px;
+}

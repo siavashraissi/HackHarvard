@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="style.css">
+    <title>BoilerMD</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <img src="BoilerMDlogo.png" alt="logo">
+        <h1>BoilerMD</h1>
+        <a href="https://www.purdue.edu/push/">
+            <button>PUSH Website</button>
+        </a>
+    </div>
+    <form id="input" class="obesityInput">
+        <label for="age">Age:</label><br>
+        <input id="age" type="text" name="age"><br><br>
+        <label for="gender">Gender:</label><br>
+        <input id="gender" type="text" name="gender"><br><br>
+        <label for="weight">Weight:</label><br>
+        <input id="weight" type="text" name="weight"><br><br>
+        <label id="height">Height:</label><br>
+        <input id="height" type="text" name="height"><br><br>
+        <label for="bmi">BMI:</label><br>
+        <input id="bmi" type="text" name="height"><br><br>
+        <button type="submit">Submit</button>
+    </form>
+    <h1 id="output">Results: </h1>
+    <script>
+        let loginForm = document.getElementById("input");
+
+        loginForm.addEventListener("submit", async (e) => { // Add async keyword here
+            e.preventDefault();
+
+            let ob = [[45,0,165,60,20]]
+            const ageString = document.getElementById('age');
+            const genderString = document.getElementById('gender');
+            const weightString = document.getElementById('weight');
+            const heightString = document.getElementById('height');
+            const bmiString = document.getElementById('bmi');
+            let age = parseInt(ageString);
+            let gender = parseInt(genderString);
+            let weight = parseFloat(weightString);
+            let height = parseFloat(heightString);
+            let bmi = parseFloat(bmiString);
+
+            ob = [[age, gender, weight, height, bmi]];
+
+            // Load the trained model (e.g., in joblib or pickle format)
+            let model = await tf.loadLayersModel('random_forest_obs.joblib'); // Load your model here
+
+            // Prepare input data as a tensor
+            let inputData = tf.tensor2d(ob); // Replace with your data
+            
+            // Make predictions
+            let predictions = model.predict(inputData);
+            let outputElement = document.getElementById("output");
+            outputElement.innerHTML = "Results: " + ageString;
+
+            predictions.print(); // Print the predictions to the console
+            return predictions;
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="style.css">
+    <title>BoilerMD</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+</head>
+<body>
+    <div class="navbar">
+        <img src="BoilerMDlogo.png" alt="logo">
+        <h1>BoilerMD</h1>
+        <a href="https://www.purdue.edu/push/">
+            <button>PUSH Website</button>
+        </a>
+    </div>
+
+    <div class="main">
+        <img src="mainphoto.png" alt="doctor">
+    </div>
+
+    <div class="choose">
+        <h1>Test out BoilerMD today</h1>
+        <a href="https://colab.research.google.com/drive/1dduaXaX6wqrhI79GK0mLA7-k3YucojT8?usp=sharing">
+            <button>Google Colab</button>
+        </a>
+        <a href="https://www.dropbox.com/scl/fi/hjiolpd7abutmr2jgtu8w/BoilerMD.zip?rlkey=uyqpysc0c1jjr6mmy460eijqf&dl=0">
+            <button>Download Code</button>
+        </a>
+    </div>
+
+    <script>
+        async function loadModel() {
+            // Load the trained model (e.g., in joblib or pickle format)
+            const model = await tf.loadLayersModel('random_forest_dbs.json'); // Load your model here
+
+            // Prepare input data as a tensor
+            const inputData = tf.tensor2d([[1, 2, 3, 4]]); // Replace with your data
+            
+            // Make predictions
+            const predictions = model.predict(inputData);
+            predictions.print(); // Print the predictions to the console
+        }
+
+        // Load the model when the page loads
+        loadModel();
+    </script>
+</body>
+</html>
