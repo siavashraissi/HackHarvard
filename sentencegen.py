@@ -8,8 +8,9 @@ def extract_features(emotions_file):
     with open(emotions_file, 'r') as f:
         emotions = json.load(f)
     features = []
-    for emotion in emotions:
+    for emotion in emotions.values():
         features.append(emotion)
+    print(emotions)
     return features
     
 
