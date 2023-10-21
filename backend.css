@@ -1,0 +1,115 @@
+/* Set default font family and size */
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #333;
+}
+
+/* Set background color and add padding to the page */
+body {
+    background-color: #f9f9f9;
+    padding: 30px;
+}
+
+/* Center the main content container */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Style the header */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+/* Style the navigation menu */
+nav {
+    background-color: #444;
+    color: #fff;
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Style the main content area */
+main {
+    background-color: #fff;
+    padding: 30px;
+    margin-top: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+/* Add colors to the website */
+.container {
+    background-color: #fff;
+}
+
+nav {
+    background-color: #333;
+}
+
+nav a {
+    color: #fff;
+}
+
+main {
+    background-color: #f9f9f9;
+}
+
+footer {
+    background-color: #333;
+}
+
+/* Add spacing to elements */
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+/* Add hover effect to buttons */
+button:hover {
+    opacity: 0.8;
+}
+
+/* Add box shadow to cards */
+.card {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Add border radius to images */
+img {
+    border-radius: 5px;
+}
