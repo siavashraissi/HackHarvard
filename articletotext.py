@@ -14,4 +14,4 @@ def convertArticleText(link):
     # Step 6: Extract the main article content using the text attribute of the Article object
     article_text = article.text
 
-    return(article.text)
+    return(article_text)
