@@ -1,4 +1,4 @@
-from articletotext import article
+from articletotext import article_text
 from transformers import pipeline
 
 classifier = pipeline(task="sentiment-analysis", model="SamLowe/roberta-base-go_emotions", top_k=None)
