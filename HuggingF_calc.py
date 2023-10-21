@@ -1,3 +1,4 @@
+from articletotext import article
 from transformers import pipeline
 
 import newspaper
