@@ -29,7 +29,7 @@ def generate_sentence_with_emotion(original_sentence, score_message):
         engine="text-davinci-002",  # Choose the appropriate engine
         prompt=prompt,
         temperature=0.7,
-        max_tokens=10
+        max_tokens=30
     )
 
     rewritten_sentence = response.choices[0].text.strip()
