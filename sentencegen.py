@@ -29,12 +29,14 @@ def extract_features(emotions_dict):
     return(score_message)
     
 
-def generate_sentence_with_emotion(original_sentence, score_message):
+def generate_sentence_with_emotion(original_sentence, new_dict):
     prompt = f'''The following in quotes is a news article: \'{original_sentence}\'. 
-    
-    {score_message} 
 
-    Rewrite this article with the same scores for each emotion, but with a \'neutral\' score of .6. Only include the rewritten article in your response, with no other comments or information.'
+    neutrality_value=new_dict['neutral]
+    string_neut=str(neutrality)
+    {neutrality_value} 
+    
+    The intensity of each emotion present in the article above was scaled on a scale from 0-1, with 0 being a low-scoring emotion and 1 being a high-scoring emotion.  the following passage scored a'+string_neut+'on the neutral scale, can you translate this text to make it have a neutral value of .7 which would make the article much more neutral
     '''
 
     response = openai.Completion.create(
@@ -58,7 +60,7 @@ def robertaClassifier(passage):
     new_dict = {}
     for item in model_outputs[0]:
         new_dict[item['label']] = item['score']
-    # new_dict['neutral'] = 0.6
+    # new_dict['neutral'] = 0.7
 
     return new_dict
 
