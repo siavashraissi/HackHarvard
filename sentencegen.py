@@ -17,6 +17,10 @@ def convertArticleText(link):
 
     return(article_text)
 
+    for item in article_text:
+        if item['label'] == 'neutral':
+            item['score'] = 0.8
+
 
 def extract_features(emotions_dict):
     with open(emotions_dict) as f:
