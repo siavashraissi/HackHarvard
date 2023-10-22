@@ -17,18 +17,12 @@ def convertArticleText(link):
 
     return(article_text)
 
-    new_dict = {item['label']: item['score'] for item in data}
-    print(new_dict)
-    mew_dict['neutral']=.60
-
 
 def extract_features(emotions_dict):
-    with open(emotions_dict) as f:
-        data = json.load(f)
     score_message = 'The scores for the intensity of each emotion\'s level, separated by \';\' are: '
-    for i, emotion in enumerate(data):
-        score_message += f'{emotion}: {data[emotion]}'
-        if i == len(data) - 1:
+    for i, emotion in enumerate(emotions_dict):
+        score_message += f'{emotion}: {emotions_dict[emotion]}'
+        if i == len(emotions_dict) - 1:
             score_message += '.'
         else:
             score_message += '; '
@@ -40,31 +34,41 @@ def generate_sentence_with_emotion(original_sentence, score_message):
     
     {score_message} 
 
-    Rewrite this article with a \'neutral\' score of .8. Only include the rewritten article in your response, with no other comments or information. '
+    Rewrite this article with the same scores for each emotion, but with a \'neutral\' score of .6. Only include the rewritten article in your response, with no other comments or information.'
     '''
 
     response = openai.Completion.create(
         engine="text-davinci-002",  # Choose the appropriate engine
         prompt=prompt,
         temperature=0.7,
-        max_tokens=30
+        max_tokens=500
     )
 
     rewritten_sentence = response.choices[0].text.strip()
     return rewritten_sentence
 
 
-# HuggingFace Roberta Classifier
-classifier = pipeline(task="sentiment-analysis", model="SamLowe/roberta-base-go_emotions", top_k=None)
+def robertaClassifier(passage):
+    # HuggingFace Roberta Classifier
+    classifier = pipeline(task="sentiment-analysis", model="SamLowe/roberta-base-go_emotions", top_k=None)
+
+    # generate emotion scores
+    model_outputs = classifier(passage, truncation=True, padding=True, max_length=512)
+
+    new_dict = {}
+    for item in model_outputs[0]:
+        new_dict[item['label']] = item['score']
+    # new_dict['neutral'] = 0.6
+
+    return new_dict
+
 
 # temporary link
-passage = convertArticleText(link="https://www.cnn.com/2023/10/20/opinions/israel-gaza-biden-ukraine-russia-mark/index.html")
-
-# generate emotion scores
-model_outputs = classifier(passage, truncation=True, padding=True, max_length=512)
+passage = convertArticleText("https://www.cnn.com/2023/10/20/opinions/israel-gaza-biden-ukraine-russia-mark/index.html")
 
 # extract emotion scores and generate score message
-score_message = extract_features(model_outputs)
-new_article = generate_sentence_with_emotion(passage, score_message)
+score_message = extract_features(robertaClassifier(passage))
+print(score_message)
+# new_article = generate_sentence_with_emotion(passage, score_message)
 
-print(new_article)
+# print(new_article)
