@@ -40,7 +40,7 @@ def generate_sentence_with_emotion(original_sentence, score_message):
     
     {score_message} 
 
-    Rewrite this article with a \'neutral\' score of .6. Only include the rewritten article in your response, with no other comments or information. '
+    Rewrite this article with a \'neutral\' score of .8. Only include the rewritten article in your response, with no other comments or information. '
     '''
 
     response = openai.Completion.create(
@@ -52,7 +52,6 @@ def generate_sentence_with_emotion(original_sentence, score_message):
 
     rewritten_sentence = response.choices[0].text.strip()
     return rewritten_sentence
-
 
 
 # HuggingFace Roberta Classifier
@@ -67,3 +66,5 @@ model_outputs = classifier(passage, truncation=True, padding=True, max_length=51
 # extract emotion scores and generate score message
 score_message = extract_features(model_outputs)
 new_article = generate_sentence_with_emotion(passage, score_message)
+
+print(new_article)
