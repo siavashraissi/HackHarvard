@@ -19,15 +19,30 @@ window.addEventListener('scroll', () => {
     }
 });
 
-$("#submitButton").click(function() {
-    let inputData = $("#dataInput").val();
+document.addEventListener("DOMContentLoaded", function() {
+    const submitButton = document.getElementById("submit-button");
+    const linkInput = document.getElementById("link");
 
-    $.ajax({
-        type: "POST",
-        url: "/process_data",
-        data: { data: inputData },
-        success: function(response) {
-            $("#output").text(response.result);
-        }
+    submitButton.addEventListener("click", function(e) {
+        e.preventDefault();  // Prevent the default form submission behavior
+
+        fetch('/submit', {
+            method: 'POST',
+            body: new URLSearchParams('link=' + linkInput.value),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Display the message received from the Flask server
+            const messageDiv = document.createElement("div");
+            messageDiv.innerText = data.message;
+            document.body.appendChild(messageDiv);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     });
 });
+

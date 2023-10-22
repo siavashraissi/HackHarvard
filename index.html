@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Newstral</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container fade-in" id="firstDiv">
+        <div class="welcome">
+            <h1>Welcome to Newstral</h1>
+            <div class="right-horizontal-line"></div>
+            <div class="left-horizontal-line"></div>
+        </div>
+        <div class="text">
+            <p>Our website is dedicated to providing children with age-appropriate news content that safeguards their mental well-being while encouraging curiosity and responsible citizenship. We aim to create a safe space where parents can guide their children's news exposure, promoting informed, engaged, and emotionally resilient young individuals.</p>
+            <div class="left-horizontal-line"></div>
+            <img src="childReading.png" alt="Child reading news">    
+        </div>
+        <p id="try">Try now</p>
+        <div class="vertical-line"></div>
+        <div class="down-arrow"></div>
+    </div>
+    <div class="container fade-out" id="secondDiv">
+        <div class="form-container">
+            <div class="input-row">
+                <div class="input-container">
+                    <label for="link">Paste a link</label>
+                    <input type="text" id="link" placeholder="URL">
+                </div>
+            </div>
+        </div>
+        <button class="custom-button" id="submit-button">Submit</button>
+        <!-- somewhere within your <body> -->
+        <div id="message"></div>
+
+
+    </div>
+    
+
+    <script src="script.js"></script>
+</body>
+
+</html>

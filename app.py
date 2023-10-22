@@ -1,12 +1,13 @@
-from flask import Flask, render_template, url_for
-from sentencegen import generate_sentence_with_emotion
+from flask import Flask, render_template, jsonify, request
 
-app = Flask(__name__)
+@app.route('/submit', methods=['POST'])
+def submit():
+    # Assuming you're extracting some data from the submitted form
+    url = request.form.get('link')
 
-@app.route('/')
-def index():
-    # return("TEST")
-    return render_template('index.html')
+    # Process the data
+    # Example: 
+    message = "Received link: " + url
 
-if __name__ == '__main__':
-    app.run(debug=True)
+    # Return the result as JSON
+    return jsonify({'message': message})
