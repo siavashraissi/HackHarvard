@@ -18,3 +18,16 @@ window.addEventListener('scroll', () => {
         secondDiv.classList.remove('fade-in');
     }
 });
+
+$("#submitButton").click(function() {
+    let inputData = $("#dataInput").val();
+
+    $.ajax({
+        type: "POST",
+        url: "/process_data",
+        data: { data: inputData },
+        success: function(response) {
+            $("#output").text(response.result);
+        }
+    });
+});
