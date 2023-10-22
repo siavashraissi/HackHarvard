@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     submitButton.addEventListener("click", function(e) {
         e.preventDefault();  // Prevent the default form submission behavior
-
         fetch('/submit', {
             method: 'POST',
             body: new URLSearchParams('link=' + linkInput.value),
