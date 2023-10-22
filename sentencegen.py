@@ -50,14 +50,16 @@ def generate_sentence_with_emotion(original_sentence, score_message):
     return rewritten_sentence
 
 
+
 # HuggingFace Roberta Classifier
 classifier = pipeline(task="sentiment-analysis", model="SamLowe/roberta-base-go_emotions", top_k=None)
 
 # temporary link
 passage = convertArticleText(link="https://www.cnn.com/2023/10/20/opinions/israel-gaza-biden-ukraine-russia-mark/index.html")
 
+# generate emotion scores
 model_outputs = classifier(passage, truncation=True, padding=True, max_length=512)
 
-article = convertArticleText("https://www.cnn.com/2023/10/20/opinions/israel-gaza-biden-ukraine-russia-mark/index.html")
-score_message = extract_features("emotions_dict.json")
-new_article = generate_sentence_with_emotion(article, score_message)
+# extract emotion scores and generate score message
+score_message = extract_features(model_outputs)
+new_article = generate_sentence_with_emotion(passage, score_message)
