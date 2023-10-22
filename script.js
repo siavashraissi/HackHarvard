@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     submitButton.addEventListener("click", function(e) {
         e.preventDefault();  // Prevent the default form submission behavior
+
         fetch('/submit', {
             method: 'POST',
             body: new URLSearchParams('link=' + linkInput.value),
@@ -34,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(response => response.json())
         .then(data => {
+            console.log("message received")
             // Display the message received from the Flask server
             const messageDiv = document.createElement("div");
             messageDiv.innerText = data.message;

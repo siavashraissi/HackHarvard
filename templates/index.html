@@ -28,12 +28,14 @@
         <div class="form-container">
             <div class="input-row">
                 <div class="input-container">
-                    <label for="link">Paste a link</label>
-                    <input type="text" id="link" placeholder="URL">
+                <label for="link">Paste a link</label>
+                <form action="/" method="POST">
+                    <input type="text" name="link" placeholder="URL">
+                    <input type="submit" name="submitbutton" value="Submit">
+                </form>
                 </div>
             </div>
         </div>
-        <button class="custom-button" id="submit-button">Submit</button>
 
     </div>
     

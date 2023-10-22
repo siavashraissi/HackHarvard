@@ -1,16 +1,27 @@
 from flask import Flask, render_template, jsonify, request, url_for
+from sentencegen import convertArticleText, extract_features, generate_sentence_with_emotion, robertaClassifier
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    if request.method == 'POST':
+        linkurl = request.form['link']
+        # if request.form['submitbutton'] == 'Submit':
+            # link = request.form.get('link')
+            # Do something with the link value
+        passage = convertArticleText(linkurl)
+        new_article = generate_sentence_with_emotion(passage, robertaClassifier(passage))
+        return(new_article)
 
-@app.route('/submit', methods=['POST'])
-def submit():
-    link = request.form.get['link']
-    # Do something with the link value
-    return ('message: Link submitted successfully')
+    else:
+        return render_template('index.html')
+
+# @app.route('/submit', methods=['POST'])
+# def submit():
+#     link = request.form['submitlink']
+#     # Do something with the link value
+#     return jsonify({'message': 'Link submitted successfully'})
 
 # @app.route('/submit', methods=['POST'])
 # def submit():
