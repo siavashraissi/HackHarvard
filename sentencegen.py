@@ -35,7 +35,7 @@ def generate_sentence_with_emotion(original_sentence, new_dict):
 
     prompt = f'''The following in quotes is a news article: \'{original_sentence}\'. 
     
-    The intensity of each emotion present in the article above was scaled on a scale from 0-1, with 0 being a low-scoring emotion and 1 being a high-scoring emotion.  the following passage scored a {string_neut} on the neutral scale, can you translate this text to make it have a neutral value of .7 which would make the article much more neutral
+    The intensity of each emotion present in the article above was scaled on a scale from 0-1, with 0 being a low-scoring emotion and 1 being a high-scoring emotion.  the following passage scored a'+ string_neut +' on the neutral scale, can you translate this text to make it have a neutral value of .7 which would make the article much more neutral
     '''
 
     response = openai.Completion.create(
