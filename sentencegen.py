@@ -1,7 +1,21 @@
 import openai
 import json
+from transformers import pipeline
+import newspaper
 
 openai.api_key = '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'
+
+
+def convertArticleText(link):
+    article = newspaper.Article(url=link)
+
+    article.download()
+
+    article.parse()
+
+    article_text = article.text
+
+    return(article_text)
 
 
 def extract_features(emotions_dict):
@@ -14,7 +28,7 @@ def extract_features(emotions_dict):
             score_message += '.'
         else:
             score_message += '; '
-    print(score_message)
+    return(score_message)
     
 
 def generate_sentence_with_emotion(original_sentence, score_message):
@@ -22,7 +36,7 @@ def generate_sentence_with_emotion(original_sentence, score_message):
     
     {score_message} 
 
-    Rewrite this article with a \'neutral\' score of .6.'
+    Rewrite this article with a \'neutral\' score of .6. Only include the rewritten article in your response, with no other comments or information. '
     '''
 
     response = openai.Completion.create(
@@ -35,12 +49,15 @@ def generate_sentence_with_emotion(original_sentence, score_message):
     rewritten_sentence = response.choices[0].text.strip()
     return rewritten_sentence
 
-# Example usage:
-# original_sentence = "I love programming"
-# rewritten_sentence = generate_sentence_with_emotion(original_sentence, emotion="happy")
-# print("Original Sentence:", original_sentence)
-# print("Rewritten Sentence:", rewritten_sentence)
 
+# HuggingFace Roberta Classifier
+classifier = pipeline(task="sentiment-analysis", model="SamLowe/roberta-base-go_emotions", top_k=None)
 
-features1 = extract_features("C:/Users/raiss/Downloads/example_1.json")
-# print(features1)
+# temporary link
+passage = convertArticleText(link="https://www.cnn.com/2023/10/20/opinions/israel-gaza-biden-ukraine-russia-mark/index.html")
+
+model_outputs = classifier(passage, truncation=True, padding=True, max_length=512)
+
+article = convertArticleText("https://www.cnn.com/2023/10/20/opinions/israel-gaza-biden-ukraine-russia-mark/index.html")
+score_message = extract_features("emotions_dict.json")
+new_article = generate_sentence_with_emotion(article, score_message)
