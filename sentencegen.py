@@ -17,9 +17,9 @@ def convertArticleText(link):
 
     return(article_text)
 
-    for item in article_text:
-        if item['label'] == 'neutral':
-            item['score'] = 0.8
+    new_dict = {item['label']: item['score'] for item in data}
+    print(new_dict)
+    mew_dict['neutral']=.60
 
 
 def extract_features(emotions_dict):
@@ -67,4 +67,4 @@ model_outputs = classifier(passage, truncation=True, padding=True, max_length=51
 score_message = extract_features(model_outputs)
 new_article = generate_sentence_with_emotion(passage, score_message)
 
-# print(new_article)
+print(new_article)
