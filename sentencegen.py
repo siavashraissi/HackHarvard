@@ -67,4 +67,4 @@ model_outputs = classifier(passage, truncation=True, padding=True, max_length=51
 score_message = extract_features(model_outputs)
 new_article = generate_sentence_with_emotion(passage, score_message)
 
-print(new_article)
+# print(new_article)
